@@ -1,12 +1,11 @@
 /**
- * MayYourJourney | GIS Subdivision Logic
- * Handles animations, spatial simulations, and UI interactions
+ * MapYourJourney | GIS Futuristic UI Logic
+ * Handles animations, spatial simulations, and interactive effects
  */
 
 document.addEventListener('DOMContentLoaded', () => {
 
     // 1. SMOOTH SCROLLING FOR INTERNAL LINKS
-    // Ensures that clicking "View Capabilities" slides down instead of jumping
     document.querySelectorAll('a[href^="#"]').forEach(anchor => {
         anchor.addEventListener('click', function (e) {
             e.preventDefault();
@@ -21,7 +20,6 @@ document.addEventListener('DOMContentLoaded', () => {
     });
 
     // 2. REVEAL ON SCROLL (Intersection Observer)
-    // Triggers the 'show' class when feature cards enter the viewport
     const revealOptions = {
         threshold: 0.1,
         rootMargin: "0px 0px -50px 0px"
@@ -31,7 +29,7 @@ document.addEventListener('DOMContentLoaded', () => {
         entries.forEach(entry => {
             if (entry.isIntersecting) {
                 entry.target.classList.add('show');
-                revealObserver.unobserve(entry.target); // Only animate once
+                revealObserver.unobserve(entry.target);
             }
         });
     }, revealOptions);
@@ -39,8 +37,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const hiddenElements = document.querySelectorAll('.hidden');
     hiddenElements.forEach(el => revealObserver.observe(el));
 
-    // 3. DYNAMIC GRADIENT HERO TRACKING (Optional Visual Flair)
-    // Moves the glow effect based on mouse position for a "high-tech" feel
+    // 3. DYNAMIC GRADIENT HERO TRACKING
     const hero = document.querySelector('.hero');
     if (hero) {
         hero.addEventListener('mousemove', (e) => {
@@ -52,30 +49,38 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
 
-    // 4. DATA COUNTER ANIMATION (For GIS Accuracy Stats)
-    // If you add stats like "99% Accuracy", this will animate the numbers
-    const animateNumbers = (el) => {
-        const target = +el.getAttribute('data-target');
-        const count = +el.innerText;
-        const speed = 200; 
-        const inc = target / speed;
+    // 4. GLOW CURSOR EFFECT
+    const createGlowEffect = () => {
+        const glow = document.createElement('div');
+        glow.className = 'cursor-glow';
+        glow.style.cssText = `
+            position: fixed;
+            width: 20px;
+            height: 20px;
+            border: 2px solid rgba(0, 242, 254, 0.5);
+            border-radius: 50%;
+            pointer-events: none;
+            z-index: 999;
+            box-shadow: 0 0 20px rgba(0, 242, 254, 0.4);
+        `;
+        document.body.appendChild(glow);
 
-        if (count < target) {
-            el.innerText = Math.ceil(count + inc);
-            setTimeout(() => animateNumbers(el), 1);
-        } else {
-            el.innerText = target;
-        }
+        document.addEventListener('mousemove', (e) => {
+            glow.style.left = (e.clientX - 10) + 'px';
+            glow.style.top = (e.clientY - 10) + 'px';
+        });
     };
 
-    // Trigger counters when the features section is reached
-    const featuresSection = document.querySelector('.features');
-    const statsObserver = new IntersectionObserver((entries) => {
-        if(entries[0].isIntersecting) {
-            document.querySelectorAll('.stat-number').forEach(num => animateNumbers(num));
-            statsObserver.unobserve(featuresSection);
-        }
-    }, { threshold: 0.5 });
+    createGlowEffect();
 
-    if (featuresSection) statsObserver.observe(featuresSection);
+    // 5. TEXT ANIMATION ON HOVER
+    const cards = document.querySelectorAll('.feature-card');
+    cards.forEach(card => {
+        card.addEventListener('mouseenter', function() {
+            this.style.animation = 'none';
+            setTimeout(() => {
+                this.style.animation = '';
+            }, 10);
+        });
+    });
 });

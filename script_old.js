@@ -1,6 +1,6 @@
 /**
- * MapYourJourney | GIS Solutions
- * Core UI Logic & Earth Engine Integration with Futuristic Effects
+ * MayYourJourney | GIS Solutions
+ * Core UI Logic & Spatial Simulation with Futuristic Effects
  */
 
 document.addEventListener('DOMContentLoaded', () => {
@@ -38,33 +38,16 @@ document.addEventListener('DOMContentLoaded', () => {
     hiddenElements.forEach(el => revealOnScroll.observe(el));
 
 
-    // 3. GOOGLE EARTH ENGINE & MAPS INTEGRATION
+    // 3. GOOGLE EARTH/MAPS INTEGRATION
     const mapStatus = document.getElementById('map-status');
     const mapContainer = document.getElementById('google-earth-map');
     const mapOverlay = document.getElementById('map-overlay');
     let googleMap = null;
-    let eeInitialized = false;
     let mapInitialized = false;
-    const defaultLocation = { lat: 37.7749, lng: -122.4194 };
-
-    // Initialize Earth Engine
-    const initializeEarthEngine = () => {
-        if (typeof ee === 'undefined') {
-            console.warn('Earth Engine API not loaded yet');
-            return;
-        }
-        
-        ee.onInitialized(() => {
-            eeInitialized = true;
-            console.log('Earth Engine initialized successfully');
-        }, (err) => {
-            console.warn('Earth Engine initialization notice:', err);
-            // Earth Engine may require authentication which is normal
-        });
-    };
 
     const initializeGoogleEarth = () => {
         // Default location: San Francisco
+        const defaultLocation = { lat: 37.7749, lng: -122.4194 };
         
         try {
             googleMap = new google.maps.Map(mapContainer, {
@@ -106,9 +89,6 @@ document.addEventListener('DOMContentLoaded', () => {
 
             mapInitialized = true;
             mapOverlay.classList.add('hidden');
-
-            // Initialize Earth Engine
-            initializeEarthEngine();
 
             // Inject CSS for map controls
             const style = document.createElement('style');
@@ -163,7 +143,6 @@ document.addEventListener('DOMContentLoaded', () => {
         const btnSatellite = document.getElementById('satellite-btn');
         const btnZoomIn = document.getElementById('zoom-in-btn');
         const btnZoomOut = document.getElementById('zoom-out-btn');
-        const btnReset = document.getElementById('reset-btn');
 
         if (btn2d) btn2d.addEventListener('click', () => {
             if (googleMap) {
@@ -201,82 +180,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 googleMap.setZoom(googleMap.getZoom() - 1);
             }
         });
-
-        if (btnReset) btnReset.addEventListener('click', () => {
-            if (googleMap) {
-                googleMap.setCenter(defaultLocation);
-                googleMap.setZoom(14);
-                googleMap.setTilt(0);
-            }
-        });
     };
-
-    // Earth Engine Analysis Controls
-    const handleEarthEngineControls = () => {
-        const analyzeBtn = document.getElementById('analyze-btn');
-        const analysisType = document.getElementById('analysis-type');
-        const infoBtn = document.getElementById('ee-info-btn');
-
-        if (analyzeBtn) {
-            analyzeBtn.addEventListener('click', () => {
-                const type = analysisType?.value || 'ndvi';
-                analyzeGeospatialData(type);
-            });
-        }
-
-        if (infoBtn) {
-            infoBtn.addEventListener('click', () => {
-                showAnalysisInfo();
-            });
-        }
-    };
-
-    // Simulate geospatial analysis
-    const analyzeGeospatialData = (analysisType) => {
-        updateMapStatus(`Analyzing ${analysisType.toUpperCase()} data...`);
-        
-        // Simulate data retrieval
-        setTimeout(() => {
-            const stats = generateMockStats(analysisType);
-            updateStats(stats);
-            updateMapStatus(`${analysisType.toUpperCase()} analysis complete`);
-        }, 1500);
-    };
-
-    // Generate mock statistics for demonstration
-    const generateMockStats = (analysisType) => {
-        const cloudCoverage = Math.round(Math.random() * 35) + 5;
-        const meanNdvi = (Math.random() * 0.4 + 0.2).toFixed(3);
-        const sceneCount = Math.floor(Math.random() * 50) + 10;
-        
-        return {
-            cloudCoverage: `${cloudCoverage}%`,
-            meanNdvi: meanNdvi,
-            sceneCount: sceneCount
-        };
-    };
-
-    // Update statistics display
-    const updateStats = (stats) => {
-        const cloudEl = document.getElementById('cloud-coverage');
-        const ndviEl = document.getElementById('mean-ndvi');
-        const countEl = document.getElementById('scene-count');
-        
-        if (cloudEl) cloudEl.textContent = stats.cloudCoverage;
-        if (ndviEl) ndviEl.textContent = stats.meanNdvi;
-        if (countEl) countEl.textContent = stats.sceneCount;
-    };
-
-    // Update map status message
-    const updateMapStatus = (message) => {
-        if (mapStatus) {
-            mapStatus.innerText = message;
-        }
-    };
-
-    // Show analysis information
-    const showAnalysisInfo = () => {
-        const info = `Geospatial Analysis Indices:\n\nNDVI: Normalized Difference Vegetation Index\n• Measures vegetation health and density\n• Range: -1.0 to 1.0 (Green areas higher)\n• Source: Landsat 8 & Sentinel-2\n\nNDBI: Normalized Difference Built-up Index\n• Detects urban/built-up areas\n• Useful for urban planning analysis\n\nNDWI: Normalized Difference Water Index\n• Identifies water bodies and moisture\n• Range: -1.0 to 1.0\n\nThermal: Land Surface Temperature\n• Measures heat/temperature patterns\n• Useful for climate and urban heat analysis\n\nComposite: True Color Satellite Image\n• Natural color representation\n• Useful for visual interpretation\n\nData Sources: Landsat 8, Sentinel-2, MODIS`;\n        alert(info);\n    };
 
     const updateActiveButton = (activeBtn) => {
         document.querySelectorAll('.map-btn').forEach(btn => {
@@ -287,13 +191,9 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // Wait for document to be ready for button interactions
     if (document.readyState === 'loading') {
-        document.addEventListener('DOMContentLoaded', () => {
-            handleMapControls();
-            handleEarthEngineControls();
-        });
+        document.addEventListener('DOMContentLoaded', handleMapControls);
     } else {
         handleMapControls();
-        handleEarthEngineControls();
     }
 
 
