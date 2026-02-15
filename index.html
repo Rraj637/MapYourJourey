@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MayYourJourney | Advanced GIS Solutions</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+
+    <nav id="navbar">
+        <div class="nav-container">
+            <h1 class="logo"><i class="fa-solid fa-earth-americas"></i> MayYourJourney</h1>
+            <ul class="nav-links">
+                <li><a href="#home">Home</a></li>
+                <li><a href="#about">About</a></li>
+                <li><a href="#services">Services</a></li>
+                <li><a href="#map-demo">Live Map</a></li>
+                <li><a href="#contact">Contact</a></li>
+            </ul>
+            <div class="hamburger">
+                <i class="fa-solid fa-bars"></i>
+            </div>
+        </div>
+    </nav>
+
+    <header id="home" class="hero">
+        <div class="hero-content hidden">
+            <h2>Mapping the World, Shaping the Future</h2>
+            <p>Advanced Spatial Analysis, Web Mapping, and Remote Sensing solutions tailored for your unique journey.</p>
+            <a href="#services" class="btn btn-primary">Explore Services</a>
+            <a href="#contact" class="btn btn-secondary">Get in Touch</a>
+        </div>
+    </header>
+
+    <section id="about" class="about section-padding">
+        <div class="container hidden">
+            <h2 class="section-title">About Our GIS Expertise</h2>
+            <p class="section-desc">At MayYourJourney, we transform complex spatial data into actionable intelligence. Whether you are navigating urban planning, environmental monitoring, or logistics, we provide the geospatial insights you need.</p>
+        </div>
+    </section>
+
+    <section id="services" class="services section-padding bg-darker">
+        <div class="container">
+            <h2 class="section-title hidden">Geospatial Capabilities</h2>
+            <div class="services-grid">
+                <div class="service-card hidden">
+                    <i class="fa-solid fa-layer-group service-icon"></i>
+                    <h3>Spatial Analysis</h3>
+                    <p>Advanced geoprocessing, suitability modeling, and network analysis to solve complex spatial problems.</p>
+                </div>
+                <div class="service-card hidden">
+                    <i class="fa-solid fa-satellite service-icon"></i>
+                    <h3>Remote Sensing</h3>
+                    <p>Processing and analyzing satellite imagery, LiDAR data, and drone photogrammetry for detailed earth observation.</p>
+                </div>
+                <div class="service-card hidden">
+                    <i class="fa-solid fa-map-location-dot service-icon"></i>
+                    <h3>Web Mapping</h3>
+                    <p>Interactive, cloud-based map dashboards using modern APIs (Leaflet, Mapbox, ArcGIS Online) for real-time tracking.</p>
+                </div>
+                <div class="service-card hidden">
+                    <i class="fa-solid fa-database service-icon"></i>
+                    <h3>Geodatabase Management</h3>
+                    <p>Structuring, maintaining, and optimizing large-scale spatial databases (PostGIS, SQL) for efficient querying.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="map-demo" class="map-section section-padding">
+        <div class="container hidden">
+            <h2 class="section-title">Interactive Data Visualization</h2>
+            <p class="section-desc">Below is a placeholder for your interactive WebGIS dashboard.</p>
+            <div class="map-container" id="mock-map">
+                <div class="map-overlay">
+                    <h3 id="map-status">Initializing Map Data...</h3>
+                    <div class="loader"></div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="contact" class="contact section-padding bg-darker">
+        <div class="container hidden">
+            <h2 class="section-title">Start Your Journey</h2>
+            <form id="contact-form" class="contact-form">
+                <div class="form-group">
+                    <input type="text" id="name" placeholder="Name" required>
+                    <input type="email" id="email" placeholder="Email" required>
+                </div>
+                <div class="form-group">
+                    <input type="text" id="subject" placeholder="Project Subject" required>
+                </div>
+                <div class="form-group">
+                    <textarea id="message" rows="6" placeholder="Describe your GIS data needs..." required></textarea>
+                </div>
+                <button type="submit" class="btn btn-primary btn-submit">Send Inquiry</button>
+            </form>
+        </div>
+    </section>
+
+    <footer>
+        <p>&copy; 2026 MayYourJourney GIS Solutions. All Rights Reserved.</p>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>
