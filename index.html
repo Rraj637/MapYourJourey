@@ -3,7 +3,11 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>MapYourJourney | Advanced GIS Solutions</title>
+    <title>MapMitra | Advanced GIS Solutions</title>
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
     <!-- Performance: preload -->
     <link rel="preload" href="style.css" as="style" onload="this.rel='stylesheet'">
     <noscript><link rel="stylesheet" href="style.css"></noscript>
@@ -18,7 +22,7 @@
 
     <nav id="navbar">
         <div class="nav-container">
-            <h5 class="logo"><i class="fa-solid fa-earth-americas"></i> Map Your Journey</h5>
+            <a href="#home" class="logo-link"><h5 class="logo"><i class="fa-solid fa-earth-americas"></i> MapMitra</h5></a>
             <ul class="nav-links">
                 <li><a href="#home">Home</a></li>
                 <li><a href="about.html">About</a></li>
@@ -33,7 +37,15 @@
     </nav>
 
     <header id="home" class="hero">
-        <div class="hero-content">
+        <div class="space-container">
+            <div class="space">
+                <div class="earth"></div>
+                <div class="orbit">
+                    <div class="satellite"></div>
+                </div>
+            </div>
+        </div>
+        <div class="hero-content" style="position: relative; z-index: 2;">
             <h2>Mapping the World, Shaping the Future</h2>
             <p>Advanced Spatial Analysis, Web Mapping, and Remote Sensing solutions tailored for your unique journey.</p>
             <a href="#services" class="btn btn-primary">Explore Services</a>
@@ -44,7 +56,7 @@
     <section id="about" class="about section-padding">
         <div class="container hidden">
             <h2 class="section-title">About Our GIS Expertise</h2>
-            <p class="section-desc">At MapYourJourney, we transform complex spatial data into actionable intelligence. Whether you are navigating urban planning, environmental monitoring, or logistics, we provide the geospatial insights you need.</p>
+            <p class="section-desc">At MapMitra, we transform complex spatial data into actionable intelligence. Whether you are navigating urban planning, environmental monitoring, or logistics, we provide the geospatial insights you need.</p>
         </div>
     </section>
 
@@ -102,7 +114,7 @@
     </section>
 
     <footer>
-        <p>&copy; 2026 MapYourJourney GIS Solutions. All Rights Reserved.</p>
+        <p>&copy; 2026 MapMitra GIS Solutions. All Rights Reserved.</p>
     </footer>
 
     <script defer src="vendor/leaflet.min.js"></script>

@@ -23,7 +23,7 @@
 
 body {
     background-color: var(--bg-dark);
-    font-family: 'Inter', sans-serif;
+    font-family: 'Poppins', sans-serif;
     color: var(--text-main);
     overflow-x: hidden;
     position: relative;

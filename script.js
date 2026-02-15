@@ -1,9 +1,52 @@
 /**
- * MapYourJourney | GIS Solutions
+ * MapMitra | GIS Solutions
  * Core UI Logic & Earth Engine Integration with Futuristic Effects
  */
 
 document.addEventListener('DOMContentLoaded', () => {
+
+    // CSS-based ROTATING EARTH & ORBITING SATELLITE ANIMATION
+    // (Using pure CSS animations with keyframes for better performance)
+    
+    // 0. SMOOTH SCROLL ANIMATION FOR LOGO & NAVIGATION LINKS
+    const smoothScrollTo = (target, duration = 1200) => {
+        const start = window.scrollY;
+        const distance = target.getBoundingClientRect().top;
+        const startTime = performance.now();
+
+        const ease = (t) => t < 0.5 ? 2 * t * t : -1 + (4 - 2 * t) * t; // easeInOutQuad
+
+        const scroll = (currentTime) => {
+            const elapsed = currentTime - startTime;
+            const progress = Math.min(elapsed / duration, 1);
+            window.scrollBy(0, distance * ease(progress) - (window.scrollY - start));
+
+            if (progress < 1) {
+                requestAnimationFrame(scroll);
+            }
+        };
+
+        requestAnimationFrame(scroll);
+    };
+
+    // Apply smooth scroll to all anchor links
+    document.querySelectorAll('a[href^="#"]').forEach(link => {
+        link.addEventListener('click', (e) => {
+            const href = link.getAttribute('href');
+            if (href !== '#') {
+                e.preventDefault();
+                const target = document.querySelector(href);
+                if (target) {
+                    // Add click animation to logo if it's the logo link
+                    if (link.classList.contains('logo-link')) {
+                        link.classList.add('clicked');
+                        setTimeout(() => link.classList.remove('clicked'), 600);
+                    }
+                    smoothScrollTo(target, 1200);
+                }
+            }
+        });
+    });
 
     // 1. STICKY NAVIGATION
     const navbar = document.getElementById('navbar');

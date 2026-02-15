@@ -1,5 +1,5 @@
 /**
- * MapYourJourney | GIS Futuristic UI Logic
+ * MapMitra | GIS Futuristic UI Logic
  * Handles animations, spatial simulations, and interactive effects
  */
 
