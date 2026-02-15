@@ -4,19 +4,15 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>MapYourJourney | Advanced GIS Solutions</title>
-    <!-- Performance: preload and preconnect -->
+    <!-- Performance: preload -->
     <link rel="preload" href="style.css" as="style" onload="this.rel='stylesheet'">
     <noscript><link rel="stylesheet" href="style.css"></noscript>
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link rel="preconnect" href="https://cdnjs.cloudflare.com">
-    <link rel="preconnect" href="https://tile.openstreetmap.org">
 
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <!-- Google Maps API (async) - add your key if available -->
-    <script async src="https://maps.googleapis.com/maps/api/js?key=YOUR_GOOGLE_MAPS_API_KEY&libraries=places,maps3d"></script>
-    <!-- Leaflet CSS (kept in head) -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.min.css" />
+    <!-- Load local vendor assets to avoid third-party hosts -->
+    <link rel="stylesheet" href="vendor/fontawesome.min.css">
+    <!-- Google Maps API removed to avoid billing/blocking; use Leaflet + OSM fallback -->
+    <!-- Leaflet CSS (local vendor) -->
+    <link rel="stylesheet" href="vendor/leaflet.min.css" />
 </head>
 <body>
 
@@ -27,8 +23,8 @@
                 <li><a href="#home">Home</a></li>
                 <li><a href="about.html">About</a></li>
                 <li><a href="#services">Services</a></li>
-                <li><a href="#map-demo">Live Map</a></li>
-                <li><a href="#contact">Contact</a></li>
+                
+                <li><a href="contact.html">Contact</a></li>
             </ul>
             <div class="hamburger">
                 <i class="fa-solid fa-bars"></i>
@@ -41,7 +37,7 @@
             <h2>Mapping the World, Shaping the Future</h2>
             <p>Advanced Spatial Analysis, Web Mapping, and Remote Sensing solutions tailored for your unique journey.</p>
             <a href="#services" class="btn btn-primary">Explore Services</a>
-            <a href="#contact" class="btn btn-secondary">Get in Touch</a>
+            <a href="contact.html" class="btn btn-secondary">Get in Touch</a>
         </div>
     </header>
 
@@ -84,68 +80,7 @@
         </div>
     </section>
 
-    <section id="map-demo" class="map-section section-padding">
-        <div class="container hidden">
-            <h2 class="section-title">Interactive Data Visualization</h2>
-            <p class="section-desc">Real-time satellite imagery, NDVI analysis, and advanced geospatial intelligence powered by Google Earth Engine.</p>
-            
-            <!-- Earth Engine Analysis Controls -->
-            <div class="ee-controls" id="ee-controls">
-                <div class="control-group">
-                    <label for="analysis-type">Analysis Type:</label>
-                    <select id="analysis-type" class="control-select">
-                        <option value="ndvi">NDVI (Vegetation Index)</option>
-                        <option value="ndbi">NDBI (Built-up Areas)</option>
-                        <option value="ndwi">NDWI (Water Index)</option>
-                        <option value="thermal">Thermal Analysis</option>
-                        <option value="composite">True Color Composite</option>
-                    </select>
-                </div>
-                <div class="control-group">
-                    <label for="date-range">Date Range:</label>
-                    <input type="date" id="start-date" class="control-input" value="2024-01-01">
-                    <span>to</span>
-                    <input type="date" id="end-date" class="control-input" value="2024-12-31">
-                </div>
-                <button class="map-btn analyze-btn" id="analyze-btn"><i class="fa-solid fa-chart-line"></i> Analyze</button>
-                <button class="map-btn" id="ee-info-btn" title="Info"><i class="fa-solid fa-circle-info"></i> Info</button>
-            </div>
-
-            <!-- Map Container -->
-            <div class="map-container" id="google-earth-map">
-                <div class="map-overlay" id="map-overlay">
-                    <h3 id="map-status">Initializing Earth Engine...</h3>
-                    <div class="loader"></div>
-                </div>
-            </div>
-
-            <!-- Map Controls -->
-            <div class="map-controls" id="map-controls">
-                <button class="map-btn" id="2d-btn" title="2D Map View"><i class="fa-solid fa-map"></i> 2D</button>
-                <button class="map-btn" id="3d-btn" title="3D Earth View"><i class="fa-solid fa-cube"></i> 3D</button>
-                <button class="map-btn" id="satellite-btn" title="Satellite View"><i class="fa-solid fa-satellite"></i> Satellite</button>
-                <button class="map-btn" id="zoom-in-btn" title="Zoom In"><i class="fa-solid fa-plus"></i></button>
-                <button class="map-btn" id="zoom-out-btn" title="Zoom Out"><i class="fa-solid fa-minus"></i></button>
-                <button class="map-btn" id="reset-btn" title="Reset View"><i class="fa-solid fa-refresh"></i> Reset</button>
-            </div>
-
-            <!-- Earth Engine Stats -->
-            <div class="ee-stats" id="ee-stats">
-                <div class="stat-item">
-                    <span class="stat-label">Cloud Coverage:</span>
-                    <span class="stat-value" id="cloud-coverage">--</span>
-                </div>
-                <div class="stat-item">
-                    <span class="stat-label">Mean NDVI:</span>
-                    <span class="stat-value" id="mean-ndvi">--</span>
-                </div>
-                <div class="stat-item">
-                    <span class="stat-label">Scene Count:</span>
-                    <span class="stat-value" id="scene-count">--</span>
-                </div>
-            </div>
-        </div>
-    </section>
+    
 
     <section id="contact" class="contact section-padding bg-darker">
         <div class="container hidden">
@@ -170,7 +105,7 @@
         <p>&copy; 2026 MapYourJourney GIS Solutions. All Rights Reserved.</p>
     </footer>
 
-    <script defer src="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.min.js"></script>
+    <script defer src="vendor/leaflet.min.js"></script>
     <script defer src="script.js"></script>
 </body>
 </html>
