@@ -44,12 +44,19 @@ body::before {
     background-size: 100% 4px;
     z-index: 100;
     pointer-events: none;
-    animation: scanlines 8s linear infinite;
+    /* Reduce CPU usage on small screens by enabling scanlines only on wider viewports */
+    animation: none;
 }
 
 @keyframes scanlines {
     0% { transform: translateY(0); }
     100% { transform: translateY(10px); }
+}
+
+@media (min-width: 768px) {
+    body::before {
+        animation: scanlines 8s linear infinite;
+    }
 }
 
 a {

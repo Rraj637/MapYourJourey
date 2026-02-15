@@ -4,13 +4,19 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>MapYourJourney | Advanced GIS Solutions</title>
-    <link rel="stylesheet" href="style.css">
+    <!-- Performance: preload and preconnect -->
+    <link rel="preload" href="style.css" as="style" onload="this.rel='stylesheet'">
+    <noscript><link rel="stylesheet" href="style.css"></noscript>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="preconnect" href="https://cdnjs.cloudflare.com">
+    <link rel="preconnect" href="https://tile.openstreetmap.org">
+
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <!-- Google Maps API with Libraries -->
+    <!-- Google Maps API (async) - add your key if available -->
     <script async src="https://maps.googleapis.com/maps/api/js?key=YOUR_GOOGLE_MAPS_API_KEY&libraries=places,maps3d"></script>
-    <!-- Leaflet for Earth Engine visualization -->
+    <!-- Leaflet CSS (kept in head) -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.min.css" />
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.min.js"></script>
 </head>
 <body>
 
@@ -49,17 +55,8 @@
     <section id="services" class="services section-padding bg-darker">
         <div class="container">
             <h2 class="section-title hidden">Geospatial Capabilities</h2>
-            <div class="services-grid">            1. Google Maps API Key lagao (line 10)
-               → https://cloud.google.com/maps-platform
-            
-            2. GitHub push karo
-               → git add .
-               → git commit -m "Fix: Make website visible"
-               → git push origin main
-            
-            3. GitHub Pages enable karo (Maine bataya tha pehle)
-               → Repository Settings → Pages → Enable
-                <div class="service-card hidden">
+                <div class="services-grid">
+                     <div class="service-card hidden">
                     <span class="gis-tag">VECTOR ANALYSIS</span>
                     <i class="fa-solid fa-layer-group service-icon"></i>
                     <h3>Spatial Analysis</h3>
@@ -173,6 +170,7 @@
         <p>&copy; 2026 MapYourJourney GIS Solutions. All Rights Reserved.</p>
     </footer>
 
-    <script src="script.js"></script>
+    <script defer src="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.min.js"></script>
+    <script defer src="script.js"></script>
 </body>
 </html>

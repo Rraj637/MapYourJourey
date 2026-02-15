@@ -137,9 +137,39 @@ document.addEventListener('DOMContentLoaded', () => {
                 initializeGoogleEarth();
             }, 500);
         } else {
+            // Google Maps not available — fall back to Leaflet + OpenStreetMap (free)
             if (mapStatus) {
-                mapStatus.innerText = 'API Not Loaded - Please add your Google Maps API Key';
+                mapStatus.innerText = 'Google Maps API not loaded — using OpenStreetMap fallback';
             }
+            initLeafletOSM();
+        }
+    };
+
+    // Leaflet + OpenStreetMap fallback (no API key, free)
+    const initLeafletOSM = () => {
+        if (!mapContainer) return;
+
+        // Create leaflet container inside the existing map container
+        mapContainer.innerHTML = '<div id="leaflet-map" style="width:100%;height:100%;"></div>';
+
+        if (typeof L === 'undefined') {
+            console.warn('Leaflet library not loaded');
+            if (mapStatus) mapStatus.innerText = 'Map libraries not loaded';
+            return;
+        }
+
+        // Initialize Leaflet map centered on default location
+        try {
+            const leafletMap = L.map('leaflet-map').setView([defaultLocation.lat, defaultLocation.lng], 13);
+            L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+                attribution: '&copy; OpenStreetMap contributors'
+            }).addTo(leafletMap);
+
+            if (mapOverlay) mapOverlay.style.display = 'none';
+            if (mapStatus) mapStatus.innerText = 'OpenStreetMap (Leaflet) loaded';
+        } catch (err) {
+            console.error('Leaflet init error:', err);
+            if (mapStatus) mapStatus.innerText = 'Failed to load fallback map';
         }
     };
 
